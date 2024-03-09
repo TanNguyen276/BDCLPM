@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 24H-The News Time</title>
+    <link rel="icon" href="~/Content/images/dvcp.ico" type="image/x-icon" />
+    <link href="~/Content/web/styles.css" rel="stylesheet" />
+    <link href="~/Content/web/web.css" rel="stylesheet" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="@ViewBag.Title" />
+    <meta property="og:description" content="@ViewBag.Description" />
+    <meta property="og:image" content="@ViewBag.Image" />
+    <meta name="Description" content="@ViewBag.Description" />
+    <meta name="keywords" content="@ViewBag.Tag">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded:400,600,700" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/AdminLTE/plugins/font-awesome/css/font-awesome.min.css">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="//fonts.googleapis.com/css?family=Merriweather:400,700%7CDroid+Serif:400,700" rel="stylesheet" type="text/css">
+    <style>
+        [data-notify="progressbar"] {
+            margin-bottom: 0px;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            width: 100%;
+            height: 5px;
+        }
+
+        @@import url(http://fonts.googleapis.com/css?family=Old+Standard+TT:400,700);
+
+        [data-notify="container"][class*="alert-pastel-"] {
+            background-color: rgb(255, 255, 238);
+            border-width: 0px;
+            border-left: 15px solid rgb(255, 240, 106);
+            border-radius: 0px;
+            box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.3);
+            font-family: /*-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",Arial,*/ 'Old Standard TT', serif;
+            letter-spacing: 1px;
+        }
+
+        [data-notify="container"].alert-pastel-info {
+            border-left-color: rgb(255, 179, 40);
+        }
+
+        [data-notify="container"].alert-pastel-danger {
+            border-left-color: rgb(255, 103, 76);
+        }
+
+        [data-notify="container"][class*="alert-pastel-"] > [data-notify="title"] {
+            color: rgb(80, 80, 57);
+            display: block;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        [data-notify="container"][class*="alert-pastel-"] > [data-notify="message"] {
+            font-weight: 400;
+        }
+
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Admin The News Time</title>
+    <link rel="icon" href="~/Content/images/dvcp.ico" type="image/x-icon" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/AdminLTE/plugins/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    @*<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">*@
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/AdminLTE/dist/css/adminlte.min.css">
+    <link href="~/Content/animate.min.css" rel="stylesheet" />
+    @*<!-- iCheck -->
+        <link rel="stylesheet" href="~/Content/AdminLTE/plugins/iCheck/flat/blue.css">
+        <!-- Morris chart -->
+        <link rel="stylesheet" href="~/Content/AdminLTE/plugins/morris/morris.css">
+        <!-- jvectormap -->
+        <link rel="stylesheet" href="~/Content/AdminLTE/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+        <!-- Date Picker -->
+        <link rel="stylesheet" href="~/Content/AdminLTE/plugins/datepicker/datepicker3.css">
+        <!-- Daterange picker -->
+        <link rel="stylesheet" href="~/Content/AdminLTE/plugins/daterangepicker/daterangepicker-bs3.css">
+        <!-- bootstrap wysihtml5 - text editor -->
+        <link rel="stylesheet" href="~/Content/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">*@
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jqueryui")
+    @* @Scripts.Render("~/bundles/modernizr")*@
+    @{
+        GetData data = new GetData();
+    }
+</head>
+<body>
+    <header>
+        
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4 w-100x">
+            <!-- Brand Logo -->
+            
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="~/Content/images/AnhUser.jpg" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">@User.Identity.Name</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                        <li class="nav-item">
+                            <a href="/Admin" class="nav-link">
+                                <i class="nav-icon fa fa-home"></i>
+                                @*<p>
+                                    Trang Chủ Admin
+                                </p>*@
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-edit"></i>
+                                @*<p>
+                                    Bài Viết
+                                    <i class="right fa fa-angle-left"></i>
+                                </p>*@
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/Admin/newPost" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon text-success"></i>
+                                        <p>Thêm bài viết mới</p>
+                                    </a>
+                                </li>
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <li class="nav-item">
+                                        <a href="/Admin/ListPost" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon text-primary"></i>
+                                            <p>Tất cả bài viết</p>
+                                        </a>
+                                    </li>
+                                }
+                                <li class="nav-item">
+                                    <a href="/Admin/MyPost" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon text-info"></i>
+                                        <p>Bài viết của tôi</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/ListSeries" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon text-info"></i>
+                                        <p>Quản lý Series</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/ListTags" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon text-primary"></i>
+                                        <p>Quản lý thể loại</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-user-circle"></i>
+                                @*<p>
+                                    Người dùng
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>*@
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/User/ChangePass" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon text-danger"></i>
+                                        <p>Đổi mật khẩu</p>
+                                    </a>
+                                </li>
+                                @{ if (User.IsInRole("admin"))
+                                    {
+                                        <li class="nav-item">
+                                            <a href="/User/UserManager" class="nav-link">
+                                                <i class="fa fa-circle-o nav-icon text-success"></i>
+                                                <p>Quản lý người dùng</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/User/createUser" class="nav-link">
+                                                <i class="fa fa-circle-o nav-icon text-info"></i>
+                                                <p>Tạo người dùng</p>
+                                            </a>
+                                        </li>
+                                    }
+
+                                }
+
+
+                            </ul>
+                        </li>
+                        <li class="nav-header" style="font-size:1.1rem">Công cụ</li>
+                        <li class="nav-item">
+                            <a href="/Admin/FileManager" target="_blank" class="nav-link">
+                                <i class="nav-icon fa fa-circle-o text-info"></i>
+                                @*<p>Quản Lý File</p>*@
+                            </a>
+                        </li>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a href="/Admin/InfoChange" class="nav-link">
+                                    <i class="nav-icon fa fa-circle-o text-success"></i>
+                                    @*<p>Thông tin website</p>*@
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/Admin/HotPostManager" class="nav-link">
+                                    <i class="nav-icon fa fa-circle-o text-success"></i>
+                                    @*<p>Quản lý bài ghim</p>*@
+                                </a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a href="/User/Logout" class="nav-link">
+                                <i class="nav-icon fa fa-sign-out text-danger"></i>
+                                @*<p>Đăng xuất</p>*@
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+
+        <div class="container back-white">
+            <a class="logo" href="/"><img src="~/Content/web/images/LogoMauDen.png" alt="Logo"></a>
+
+
+            <a class="menu-nav-icon" data-menu="#main-menu" href="#"><i class="ion-navicon"></i></a>
+
+            <ul class="main-menu2 link" id="main-menu">
+                <li><a href="/">TRANG CHỦ</a></li>
+                <li class="drop-down">
+                    <a href="/trieu-dai">DANH MỤC<i class="fa fa-caret-down"></i></a>
+                    <ul class="drop-down-menu drop-down-inner">
+                        @foreach (var i in data.GetEnumShowList().Take(11))
+                        {
+                            <li><a href="/trieu-dai/@i.slug-@i.value">@i.showname</a></li>
+                        }
+                        <li><a href="/trieu-dai/">XEM TẤT CẢ</a></li>
+                    </ul>
+                </li>
+                <li class="drop-down">
+                    <a href="/danh-muc/">THỂ LOẠI<i class="fa fa-caret-down"></i></a>
+                    <ul class="drop-down-menu drop-down-inner">
+                        @foreach (var i in data.GetListTags().Take(6))
+                        {
+                            <li><a href="/danh-muc/@SlugGenerator.SlugGenerator.GenerateSlug(i.TagName.ToLower())-@i.TagID">@i.TagName</a></li>
+                        }
+                        <li><a href="/danh-muc/">XEM TẤT CẢ</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="/tim-kiem">TÌM NÂNG CAO</a></li>
+
+            </ul>
+
+            <div class="clearfix"></div>
+        </div><!-- container -->
+    </header>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <footer class="bg-191 color-ccc">
+
+        <div class="container">
+            <div class="pt-50 pb-20 pos-relative">
+                <div class="abs-tblr pt-50 z--1 text-center">
+                    @*<div class="h-80 pos-relative"><img class="opacty-1 h-100 w-auto" src="~/Content/web/images/map.png" alt=""></div>*@
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="mb-30">
+                            <h5 class="color-primary mb-20"><b>Liên Hệ</b></h5>
+                            <div class="fb-page" data-href="https://www.facebook.com/profile.php?id=100038283573103" data-tabs="timeline" data-width="" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/profile.php?id=100038283573103" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/profile.php?id=100038283573103">Liên Hệ Quảng Cáo Tại Đây</a></blockquote></div>
+                        </div><!-- mb-30 -->
+                    </div><!-- col-md-4 -->
+
+
+                    <div class="col-sm-4">
+                        <div class="mb-30">
+                            <h5 class="color-primary mb-20"><b>ĐỀ XUẤT CAO</b></h5>
+                            @{ var cnt = 2;}
+                            @foreach (var i in data.GetHighRatedPost())
+                            {
+
+                                <div class="mb-20">
+                                    <a class="color-white" href="/bai-viet/@i.slug"><b>@i.post_title</b></a>
+                                    <h6 class="mt-10">@String.Format("{0:dd/MM/yyyy}", i.create_date)</h6>
+                                </div>
+                                if (cnt % 2 == 0)
+                                {
+                                    <div class="brdr-ash-1 opacty-2 mr-30 mb-2 mt-2"></div>
+                                }
+                                cnt++;
+                            }
+
+
+
+                        </div><!-- mb-30 -->
+                    </div><!-- col-md-4 -->
+                    <div class="col-sm-4">
+                        <div class="mb-30">
+                            <a href="#"><img src="~/Content/web/images/LogoMauTrang.png"></a>
+                            <p class="mtb-20 color-ccc">
+                                Chào mừng bạn đến với The New Times - nguồn thông tin hàng đầu dành cho tin tức và báo chí trực tuyến! Chúng tôi tự hào là một trang web báo chí đa dạng và đáng tin cậy, cung cấp cho bạn những thông tin mới nhất về các sự kiện quan trọng trên toàn thế giới.
+                            </p>
+                        </div><!-- mb-30 -->
+                    </div><!-- col-md-4 -->
+
+
+                </div><!-- row -->
+            </div><!-- ptb-50 -->
+
+            <div class="brdr-ash-1 opacty-2"></div>
+
+            <div class="oflow-hidden color-ash font-9 text-sm-center ptb-sm-5">
+
+
+
+            </div>
+        </div>
+    </footer>
+    <div id="fb-root"></div>
+    @*<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3"></script>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        <script src="~/Content/web/tether.min.js"></script>
+        <script src="~/Content/web/scripts.js"></script>
+        <script src="~/Content/photoswipe/init.js"></script>
+        @RenderSection("scripts", required: false)*@
+</body>
+</html>
